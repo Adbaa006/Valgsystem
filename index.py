@@ -1,22 +1,19 @@
 partier = ["Arbeiderpartiet", "Fremskrittspartiet", "Høyre", "Sosialistisk Venstreparti", "Senterpartiet", "Rødt", "Miljøpartiet De Grønne", "Kristelig Folkeparti", "Venstre"]
+forkortelser = ["ap", "frp", "h", "sv", "sp", "r", "mdg", "krf", "v"]
 stemmer = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-svar1 = ["Arbeiderpartiet", "Fremskrittspartiet", "Høyre", "Sosialistisk Venstreparti", "Senterpartiet", "Rødt", "Miljøpartiet De Grønne", "Kristelig Folkeparti", "Venstre"]
-svar2 = ["arbeiderpartiet", "fremskrittspartiet", "høyre", "sosialistisk venstreparti", "senterpartiet", "rødt", "miljøpartiet de grønne", "kristelig folkeparti", "venstre"]
-svar3 = ["ap", "frp", "h", "sv", "sp", "r", "mdg", "krf", "v"]
+
+def flest_stemmer(stemmer):
+    størst = stemmer[0]
+    for stemme in stemmer:
+        if stemme > størst:
+            størst = stemme
+    return størst
 
 while True:
     print("=== Stortingsvalg ===")
     print(f"Dette er partiene du kan stemme på: \n {partier}")
-    print(input("Hvilket parti vil du stemme på? \n"))
-    if input == svar1:
-        print("Godt valg!")
-'''    
-    elif input == svar2:
-        print("Takk for din stemme!")
-
-    elif input == svar3:
-        print("Kom deg hjem nå")
-
-    else:
-        print("Ugyldig stemme, velg et parti \n")
-'''
+    parti = input("Hvilket parti vil du stemme på? \n").lower()
+    if input == "Arbeiderpartiet":
+        print(f"Godt valg. Du stemte {parti}")
+    else: 
+        print("Stem igjen")
