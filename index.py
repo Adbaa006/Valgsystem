@@ -1,19 +1,57 @@
-partier = ["Arbeiderpartiet", "Fremskrittspartiet", "Høyre", "Sosialistisk Venstreparti", "Senterpartiet", "Rødt", "Miljøpartiet De Grønne", "Kristelig Folkeparti", "Venstre"]
-forkortelser = ["ap", "frp", "h", "sv", "sp", "r", "mdg", "krf", "v"]
+partier = ["arbeiderpartiet", "fremskrittspartiet", "høyre", "sosialistisk venstreparti", "senterpartiet", "rødt", "miljøpartiet de grønne", "kristelig folkeparti", "venstre"]
+forkortelse = ["ap", "frp", "h", "sv", "sp", "r", "mdg", "krf", "v"]
 stemmer = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-def flest_stemmer(stemmer):
-    størst = stemmer[0]
-    for stemme in stemmer:
-        if stemme > størst:
-            størst = stemme
-    return størst
 
-while True:
-    print("=== Stortingsvalg ===")
-    print(f"Dette er partiene du kan stemme på: \n {partier}")
+def flest_stemmer(stemmer):
+    flest = stemmer[0]
+    for stemme in stemmer:
+        if stemme > flest:
+            flest = stemme
+            return flest
+
+def regne_prosent(stemmer):
+    total = sum(stemmer)
+    prosent = stemmer[i]
+    svar = (prosent / total) * 100
+    round(svar/2)
+    return svar
+
+should_continue = True
+
+print("\n    Stortingsvalg    ")
+print(f"Dette er partiene du kan stemme på: \n {partier}")
+
+while should_continue:
     parti = input("Hvilket parti vil du stemme på? \n").lower()
-    if input == "Arbeiderpartiet":
-        print(f"Godt valg. Du stemte {parti}")
-    else: 
-        print("Stem igjen")
+
+    for i in range(len(partier)):
+        if parti == partier[i]:
+            stemmer[i] += 1
+
+    for i in range(len(forkortelse)):
+        if parti == forkortelse[i]:
+            stemmer[i] += 1
+   
+    if parti in partier:
+        print(f"Du stemte {parti}, takk for at du stemte")
+
+    elif parti in forkortelse:
+        print(f"Du stemte {parti}, takk for at du stemte")
+
+    elif parti == "vis resultat":
+        should_continue = False
+
+    elif parti not in partier:
+        print(f"Vennligst velg et parti \nDette er partiene du kan stemme på: \n {partier}")
+
+print("Dette er resultatet: ")
+for i in range(len(partier)):
+    print(f"{partier[i]}: {stemmer[i]}")
+          
+print(f"Partiet som vant fikk {flest_stemmer(stemmer)} stemmer")
+
+print("Stemmer per parti i prosent")
+for i in range(len(stemmer)):
+    print(regne_prosent(stemmer))
+
