@@ -14,6 +14,8 @@ def regne_prosent(stemmer):
     svar = round(svar,2)
     return svar
 
+# Valgsimulering
+
 for i in velgere:
     parti = random.choice(partier)
     for i in range(len(partier)):
@@ -35,6 +37,8 @@ for i in range(len(stemmer)):
 print(f"\nPartiet med flest stemmer ble {partier[flestIndex]} med {flest} stemmer")
 
 """
+# Valg med brukerinput
+
 should_continue = True
 
 print("\n    Stortingsvalg    ")
