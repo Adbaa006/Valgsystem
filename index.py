@@ -1,11 +1,11 @@
 import random
 
-partier = ["arbeiderpartiet", "fremskrittspartiet", "høyre", "sosialistisk venstreparti", "senterpartiet", "rødt", "miljøpartiet de grønne", "kristelig folkeparti", "venstre"]
-forkortelse = ["ap", "frp", "h", "sv", "sp", "r", "mdg", "krf", "v"]
+partier = ["Arbeiderpartiet", "Fremskrittspartiet", "Høyre", "Sosialistisk Venstreparti", "Senterpartiet", "Rødt", "Miljøpartiet De Grønne", "Kristelig Folkeparti", "Venstre"]
+forkortelse = ["AP", "FRP", "H", "SV", "SP", "R", "MDG", "KRF", "V"]
 stemmer = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-velgere = list(range(1, 100))
+velgere = list(range(1, 50))
 flest = -1
-
+flestIndex = -1
 
 def regne_prosent(stemmer):
     total = sum(stemmer)
@@ -20,19 +20,20 @@ for i in velgere:
         if parti == partier[i]:
             stemmer[i] += 1
 
-for i in range(len(stemmer)):
-    if stemmer[i] > flest:
-        flest = stemmer[i]
-
 print("Dette er resultatet: ")
 for i in range(len(partier)):
     print(f"{partier[i]}: {stemmer[i]}")
 
-print("Stemmer per parti i prosent")
+print("\nStemmer per parti i prosent")
 for i in range(len(stemmer)):
-    print(f"{regne_prosent(stemmer)}%")
+    print(f"{forkortelse[i]}: {regne_prosent(stemmer)} %")
 
-print(flest)
+for i in range(len(stemmer)):
+    if stemmer[i] > flest:
+        flest = stemmer[i]
+        flestIndex = i
+print(f"\nPartiet med flest stemmer ble {partier[flestIndex]} med {flest} stemmer")
+
 """
 should_continue = True
 
@@ -40,7 +41,7 @@ print("\n    Stortingsvalg    ")
 print(f"Dette er partiene du kan stemme på: \n {partier}")
 
 while should_continue:
-    parti = input("Hvilket parti vil du stemme på? \n").lower()
+    parti = input("Hvilket parti vil du stemme på? \n").capitalize()
 
     for i in range(len(partier)):
         if parti == partier[i]:
@@ -72,3 +73,4 @@ print("Stemmer per parti i prosent")
 for i in range(len(stemmer)):
     print(regne_prosent(stemmer))
 """
+
