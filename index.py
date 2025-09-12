@@ -3,19 +3,15 @@ import random
 partier = ["arbeiderpartiet", "fremskrittspartiet", "høyre", "sosialistisk venstreparti", "senterpartiet", "rødt", "miljøpartiet de grønne", "kristelig folkeparti", "venstre"]
 forkortelse = ["ap", "frp", "h", "sv", "sp", "r", "mdg", "krf", "v"]
 stemmer = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-velgere = list(range(1, 4058875))
-
-def flest_stemmer(stemmer):
-    stemmer.sort()
-    siste = stemmer.pop()
-    return siste
+velgere = list(range(1, 100))
+flest = -1
 
 
 def regne_prosent(stemmer):
     total = sum(stemmer)
     prosent = stemmer[i]
     svar = (prosent / total) * 100
-    round(svar,2)
+    svar = round(svar,2)
     return svar
 
 for i in velgere:
@@ -24,6 +20,9 @@ for i in velgere:
         if parti == partier[i]:
             stemmer[i] += 1
 
+for i in range(len(stemmer)):
+    if stemmer[i] > flest:
+        flest = stemmer[i]
 
 print("Dette er resultatet: ")
 for i in range(len(partier)):
@@ -33,9 +32,7 @@ print("Stemmer per parti i prosent")
 for i in range(len(stemmer)):
     print(f"{regne_prosent(stemmer)}%")
 
-print("Partiet med flest stemmer")
-print(flest_stemmer(stemmer))
-
+print(flest)
 """
 should_continue = True
 
