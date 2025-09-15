@@ -1,9 +1,10 @@
 import random
 
-partier = ["Arbeiderpartiet", "Fremskrittspartiet", "Høyre", "Sosialistisk Venstreparti", "Senterpartiet", "Rødt", "Miljøpartiet De Grønne", "Kristelig Folkeparti", "Venstre"]
-forkortelse = ["AP", "FRP", "H", "SV", "SP", "R", "MDG", "KRF", "V"]
-stemmer = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-velgere = list(range(1, 50))
+partier = ["Arbeiderpartiet", "Fremskrittspartiet", "Høyre", "Sosialistisk Venstreparti", "Senterpartiet", "Rødt", "Miljøpartiet De Grønne", "Kristelig Folkeparti", "Venstre", "Blankt"]
+sannsynlighet = [28, 24.4, 15.4, 6, 6, 6, 5, 5, 4, 1]
+forkortelse = ["AP", "FRP", "H", "SV", "SP", "R", "MDG", "KRF", "V", "B"]
+stemmer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+velgere = list(range(1, 4058875))
 flest = -1
 flestIndex = -1
 
@@ -17,7 +18,7 @@ def regne_prosent(stemmer):
 # Valgsimulering
 
 for i in velgere:
-    parti = random.choice(partier)
+    parti = random.choices(partier, weights=sannsynlighet, k=1)[0]
     for i in range(len(partier)):
         if parti == partier[i]:
             stemmer[i] += 1
