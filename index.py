@@ -28,11 +28,11 @@ for i in velgere: # Sier at følgene skal utføres for hver av elementene i list
 
 print("Dette er resultatet: ")
 for i in range(len(partier)): # Sier at følgene skal benytte hele lengden av lista "partier"
-    print(f"{partier[i]}: {stemmer[i]}") # Den skal printe hvert av partiene fra lista med deres tilsvarende stemme
+    print(f"{partier[i]:<27}: {stemmer[i]}") # Den skal printe hvert av partiene fra lista med deres tilsvarende stemme
 
 print("\nStemmer per parti i prosent")
 for i in range(len(stemmer)): #Sier at følgende skal benytte hele lengden av lista "stemmer"
-    print(f"{forkortelse[i]}: {regne_prosent(stemmer)} %") # Den skal printe hver av forkortelsene med deres tilsvarende prosent med svarene fra funksjonen som regner ut prosentandelen 
+    print(f"{forkortelse[i]:<5}: {regne_prosent(stemmer)} %") # Den skal printe hver av forkortelsene med deres tilsvarende prosent med svarene fra funksjonen som regner ut prosentandelen 
 
 for i in range(len(stemmer)): #Sier at følgende skal benytte hele lengden av lista "stemmer"
     if stemmer[i] > flest: # Sammenligner verdiene i lista "stemmer" med verdien til variabelen "flest"
